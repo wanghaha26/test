@@ -1,6 +1,7 @@
 #!/bin/sh
 yum install bind-utils -y
-yum install wget -y && wget https://static.adguard.com/adguardhome/release/AdGuardHome_linux_amd64.tar.gz
+yum install wget -y 
+wget https://static.adguard.com/adguardhome/release/AdGuardHome_linux_amd64.tar.gz
 [ -e /root/AdGuardHome_linux_amd64.tar.gz ]
 if [ $? -eq 0 ]
 then
@@ -9,14 +10,12 @@ then
 else
         echo "下载失败，请稍后再试"
         exit;
-fi
 cd AdGuardHome
 ./AdguardHome -s install
 Mon="/root/AdGuardHome"
 if [ ! -d $Mon ]
 then
-	exit;
-fi	
+	exit;	
 read -p "AdGuardHome：" SERVICE
 netstat -anp | grep $SERVICE &> /dev/null
 if [ $? -eq 0 ]
@@ -25,7 +24,6 @@ then
 else
   	echo "$SERVICE服务启动失败！"
         exit;
-fi
 echo “正在开放3000端口”
 firewall-cmd —permanent —zone=public —add-port=3000/tcp
 firewall-cmd —permanent —zone=public —add-port=3000/udp
