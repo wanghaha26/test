@@ -1,5 +1,4 @@
 #!/bin/sh
-cd
 yum install bind-utils -y
 yum install wget -y && wget https://static.adguard.com/adguardhome/release/AdGuardHome_linux_amd64.tar.gz
 [ -e /root/AdGuardHome_linux_amd64.tar.gz ]
